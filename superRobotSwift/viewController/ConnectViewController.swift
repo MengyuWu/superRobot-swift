@@ -63,7 +63,8 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-     
+        loginView.hidden=false
+        controlView.hidden=true
         var urlAddress="https://www.youtube.com"
         var url=NSURL(string: urlAddress)
         let request = NSURLRequest(URL: url!)
@@ -79,6 +80,94 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     
 
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
+        println("stream event: \(eventCode)")
+        
+        switch (eventCode) {
+       
+        case NSStreamEvent.OpenCompleted:
+            println("Stream opened")
+            break
+            
+        case NSStreamEvent.HasBytesAvailable:
+            break
+            
+        case NSStreamEvent.ErrorOccurred:
+            println("Can not connect to the host!")
+            break
+            
+        case NSStreamEvent.EndEncountered:
+            aStream.close()
+            aStream.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+            break
+            
+        default:
+           println("unknown event")
+        }
+
+        
     
     }
+    
+    func sendMessage(msg:String){
+        var data = NSData(data: msg.dataUsingEncoding(NSASCIIStringEncoding)!)
+        outputStream?.write(UnsafePointer<UInt8>(data.bytes) , maxLength: data.length)
+    }
+    
+    @IBAction func passiveButtonTapped(sender: AnyObject) {
+        sendMessage("passive")
+    }
+   
+    
+    @IBAction func safeButtonTapped(sender: AnyObject) {
+        sendMessage("safe")
+        
+    }
+    
+
+    @IBAction func fullButtonTapped(sender: AnyObject) {
+        sendMessage("full")
+        
+    }
+    
+    
+
+    @IBAction func cleanButtonTapped(sender: AnyObject) {
+        sendMessage("clean")
+    }
+    
+    
+    @IBAction func dockButtonTapped(sender: AnyObject) {
+        sendMessage("dock")
+    }
+    
+    
+    @IBAction func beepButtonTapped(sender: AnyObject) {
+        sendMessage("beep")
+    }
+
+    
+    @IBAction func upButtonTapped(sender: AnyObject) {
+        sendMessage("up")
+        
+    }
+    
+    @IBAction func leftButtonTapped(sender: AnyObject) {
+        sendMessage("left")
+    }
+    
+    @IBAction func rightButtonTapped(sender: AnyObject) {
+        sendMessage("right")
+        
+    }
+    
+    @IBAction func downButtonTapped(sender: AnyObject) {
+        sendMessage("down")
+    }
+    
+    
+    @IBAction func stopButtonTapped(sender: AnyObject) {
+        sendMessage("stop")
+    }
+    
+    
 }
