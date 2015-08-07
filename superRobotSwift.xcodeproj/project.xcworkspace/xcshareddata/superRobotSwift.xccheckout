@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6090037D-0B01-464F-88FB-C1F9B9E22613</string>
+	<key>IDESourceControlProjectName</key>
+	<string>superRobotSwift</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DC1306E9B78AC5E0F555AB2EF355407878D30600</key>
+		<string>https://github.com/MengyuWu/superRobot-swift.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>superRobotSwift.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DC1306E9B78AC5E0F555AB2EF355407878D30600</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MengyuWu/superRobot-swift.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DC1306E9B78AC5E0F555AB2EF355407878D30600</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DC1306E9B78AC5E0F555AB2EF355407878D30600</string>
+			<key>IDESourceControlWCCName</key>
+			<string>superRobotSwift</string>
+		</dict>
+	</array>
+</dict>
+</plist>

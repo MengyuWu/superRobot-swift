@@ -108,12 +108,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkl-fD-fZQ">
-                                        <rect key="frame" x="215" y="641" width="30" height="30"/>
+                                        <rect key="frame" x="215" y="640.5" width="30" height="30"/>
                                         <state key="normal" title="left">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="leftButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zoJ-cj-uC4"/>
+                                            <action selector="leftButtonTouchBegin:" destination="vXZ-lx-hvc" eventType="touchDown" id="XBk-gP-Abw"/>
+                                            <action selector="leftButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Fki-7R-5lR"/>
+                                            <action selector="leftButtonTouchUpOutside:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="Wqn-Gz-QpY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-Yu-C6p">
@@ -217,9 +219,9 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="1td-i9-LDM"/>
-                                        <exclude reference="xgJ-4p-puS"/>
-                                        <exclude reference="aBP-sM-n9Z"/>
                                         <exclude reference="MUY-Qn-yOe"/>
+                                        <exclude reference="aBP-sM-n9Z"/>
+                                        <exclude reference="xgJ-4p-puS"/>
                                         <exclude reference="OBh-Vz-WzX"/>
                                         <exclude reference="k3z-jI-3I0"/>
                                     </mask>

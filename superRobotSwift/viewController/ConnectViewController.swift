@@ -65,7 +65,7 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
 
         loginView.hidden=false
         controlView.hidden=true
-        var urlAddress="https://www.youtube.com"
+        var urlAddress="http://www.youtube.com"
         var url=NSURL(string: urlAddress)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
@@ -113,6 +113,16 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         outputStream?.write(UnsafePointer<UInt8>(data.bytes) , maxLength: data.length)
     }
     
+    func getCurrentSecond(date:NSDate)-> Int{
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute | .CalendarUnitSecond | .CalendarUnitNanosecond , fromDate: date)
+        let hour = components.hour
+        let minutes = components.minute
+        let seconds = components.second
+        let nanoseconds=components.nanosecond
+        return nanoseconds
+    }
+    
     @IBAction func passiveButtonTapped(sender: AnyObject) {
         sendMessage("passive")
     }
@@ -147,20 +157,43 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
 
     
     @IBAction func upButtonTapped(sender: AnyObject) {
+        println("up")
         sendMessage("up")
         
     }
     
     @IBAction func leftButtonTapped(sender: AnyObject) {
+        println("touch up inside")
         sendMessage("left")
     }
     
+    @IBAction func leftButtonTouchUpInside(sender: AnyObject) {
+        
+        let nanoseconds = getCurrentSecond(NSDate())
+        println("touch up inside, left move stop, time: \(nanoseconds)")
+    }
+    
+
+    @IBAction func leftButtonTouchBegin(sender: AnyObject) {
+     let nanoseconds = getCurrentSecond(NSDate())
+        println("touch down, left move begin, time: \(nanoseconds)")
+    }
+    
+    
+    @IBAction func leftButtonTouchUpOutside(sender: AnyObject) {
+        println("touch up outside")
+    }
+
+
+    
     @IBAction func rightButtonTapped(sender: AnyObject) {
+        println("right")
         sendMessage("right")
         
     }
     
     @IBAction func downButtonTapped(sender: AnyObject) {
+        println("down")
         sendMessage("down")
     }
     
