@@ -6,3 +6,4 @@
 4. the command should change from hex to binary
 5. when using the creat2server.py: create-> connect first
 6. when the light is on: the robot is not in the safe mode. should change to safe mode and then send the commands
+7.  linux: using /usr/bin/python
