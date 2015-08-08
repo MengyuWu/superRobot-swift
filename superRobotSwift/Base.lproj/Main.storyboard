@@ -108,14 +108,13 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkl-fD-fZQ">
-                                        <rect key="frame" x="215" y="640.5" width="30" height="30"/>
+                                        <rect key="frame" x="215" y="641" width="30" height="30"/>
                                         <state key="normal" title="left">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="leftButtonTouchBegin:" destination="vXZ-lx-hvc" eventType="touchDown" id="XBk-gP-Abw"/>
                                             <action selector="leftButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Fki-7R-5lR"/>
-                                            <action selector="leftButtonTouchUpOutside:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="Wqn-Gz-QpY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-Yu-C6p">
@@ -124,7 +123,8 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="rightButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="jCW-Ut-oPg"/>
+                                            <action selector="rightTouchDown:" destination="vXZ-lx-hvc" eventType="touchDown" id="hNe-fH-gME"/>
+                                            <action selector="rightTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hTo-2H-JuR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnN-qF-2nt">
@@ -133,7 +133,8 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="upButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="VNd-RI-3uA"/>
+                                            <action selector="upTouchDown:" destination="vXZ-lx-hvc" eventType="touchDown" id="QS6-SZ-OMk"/>
+                                            <action selector="upTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V6e-2T-BLZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26R-Zv-klZ">
@@ -142,7 +143,8 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="downButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Hvp-rg-g9c"/>
+                                            <action selector="downTouchDown:" destination="vXZ-lx-hvc" eventType="touchDown" id="E6n-oy-Fi5"/>
+                                            <action selector="downTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="I97-cJ-aQR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjX-dK-aud">
@@ -181,6 +183,15 @@
                                             <action selector="passiveButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JG5-up-VLJ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxI-Re-wwI">
+                                        <rect key="frame" x="281" y="749" width="37" height="30"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hX9-Db-fcn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -188,6 +199,7 @@
                                     <constraint firstAttribute="centerX" secondItem="u3M-w4-q7T" secondAttribute="centerX" id="4dY-l6-Pjf"/>
                                     <constraint firstItem="qjX-dK-aud" firstAttribute="centerX" secondItem="NTv-rM-O6X" secondAttribute="centerX" id="5g4-gY-Pth"/>
                                     <constraint firstItem="ed2-Yu-C6p" firstAttribute="leading" secondItem="A7E-pM-xl0" secondAttribute="trailing" constant="40" id="7u1-MA-N0A"/>
+                                    <constraint firstItem="jxI-Re-wwI" firstAttribute="top" secondItem="26R-Zv-klZ" secondAttribute="bottom" constant="8" id="7xs-uy-xpY"/>
                                     <constraint firstItem="A7E-pM-xl0" firstAttribute="leading" secondItem="Jkl-fD-fZQ" secondAttribute="trailing" constant="40" id="873-0m-vQt"/>
                                     <constraint firstItem="A7E-pM-xl0" firstAttribute="top" secondItem="8f9-LN-CI5" secondAttribute="bottom" constant="220" id="8MU-5g-atz"/>
                                     <constraint firstItem="AjN-fR-iKr" firstAttribute="centerX" secondItem="QBb-vm-S4g" secondAttribute="centerX" constant="0.5" id="F4Z-n1-yfY"/>
@@ -208,6 +220,7 @@
                                     <constraint firstItem="u3M-w4-q7T" firstAttribute="centerY" secondItem="QBb-vm-S4g" secondAttribute="centerY" id="aLh-7u-qNL"/>
                                     <constraint firstItem="8f9-LN-CI5" firstAttribute="top" secondItem="Les-wm-ReW" secondAttribute="top" constant="45" id="aiL-og-qnl"/>
                                     <constraint firstItem="ed2-Yu-C6p" firstAttribute="centerY" secondItem="A7E-pM-xl0" secondAttribute="centerY" id="d5b-YO-N6n"/>
+                                    <constraint firstAttribute="centerX" secondItem="jxI-Re-wwI" secondAttribute="centerX" id="eRb-G0-BLx"/>
                                     <constraint firstItem="qjX-dK-aud" firstAttribute="centerY" secondItem="u3M-w4-q7T" secondAttribute="centerY" id="f5W-lr-hy1"/>
                                     <constraint firstItem="fnN-qF-2nt" firstAttribute="top" secondItem="u3M-w4-q7T" secondAttribute="bottom" constant="106" id="k3z-jI-3I0"/>
                                     <constraint firstItem="Jkl-fD-fZQ" firstAttribute="centerY" secondItem="A7E-pM-xl0" secondAttribute="centerY" id="llc-Ff-cEL"/>

@@ -35,8 +35,8 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         
         //TODO: check whether it is connect to server
         // if connect
-        loginView.hidden=true
-        controlView.hidden=false
+//        loginView.hidden=true
+//        controlView.hidden=false
         
     }
     
@@ -86,9 +86,12 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
        
         case NSStreamEvent.OpenCompleted:
             println("Stream opened")
+            loginView.hidden=true
+            controlView.hidden=false
             break
             
         case NSStreamEvent.HasBytesAvailable:
+            println("HasBytesAvailable")
             break
             
         case NSStreamEvent.ErrorOccurred:
@@ -156,51 +159,69 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     }
 
     
-    @IBAction func upButtonTapped(sender: AnyObject) {
-        println("up")
-        sendMessage("up")
-        
-    }
-    
-    @IBAction func leftButtonTapped(sender: AnyObject) {
-        println("touch up inside")
-        sendMessage("left")
-    }
-    
+    // LEFT
     @IBAction func leftButtonTouchUpInside(sender: AnyObject) {
         
         let nanoseconds = getCurrentSecond(NSDate())
         println("touch up inside, left move stop, time: \(nanoseconds)")
+        sendMessage("stop")
     }
     
 
     @IBAction func leftButtonTouchBegin(sender: AnyObject) {
      let nanoseconds = getCurrentSecond(NSDate())
         println("touch down, left move begin, time: \(nanoseconds)")
-    }
-    
-    
-    @IBAction func leftButtonTouchUpOutside(sender: AnyObject) {
-        println("touch up outside")
-    }
-
-
-    
-    @IBAction func rightButtonTapped(sender: AnyObject) {
-        println("right")
-        sendMessage("right")
+        sendMessage("leftButtonDown")
         
     }
     
-    @IBAction func downButtonTapped(sender: AnyObject) {
-        println("down")
-        sendMessage("down")
+
+    //RIGHT
+    
+    @IBAction func rightTouchDown(sender: AnyObject) {
+        sendMessage("rightButtonDown")
     }
+    
+    @IBAction func rightTouchUpInside(sender: AnyObject) {
+        sendMessage("stop")
+    }
+    
+    
+    
+    // UP
+    
+    @IBAction func upTouchDown(sender: AnyObject) {
+        sendMessage("upButtonDown")
+    }
+    
+    @IBAction func upTouchUpInside(sender: AnyObject) {
+        sendMessage("stop")
+    }
+    
+    // DOWN
+    
+    
+    @IBAction func downTouchDown(sender: AnyObject) {
+        sendMessage("downButtonDown")
+    }
+    
+    @IBAction func downTouchUpInside(sender: AnyObject) {
+         sendMessage("stop")
+    }
+    
+    
     
     
     @IBAction func stopButtonTapped(sender: AnyObject) {
         sendMessage("stop")
     }
     
+    @IBAction func doneButtonTapped(sender: AnyObject) {
+        inputStream?.close()
+        outputStream?.close()
+        
+        self.loginView.hidden=false
+        self.controlView.hidden=true
+    }
     
 }
