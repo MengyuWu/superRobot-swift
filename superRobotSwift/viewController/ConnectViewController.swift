@@ -70,8 +70,19 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
         
+        //Keyboard dismiss
+        self.IPTextField.delegate=self
+        self.PortTextField.delegate=self
+        
     }
 
+    @IBAction func refreshWebview(sender: AnyObject) {
+        var urlAddress="http://192.168.0.103:5555"
+        var url=NSURL(string: urlAddress)
+        let request = NSURLRequest(URL: url!)
+        webView.loadRequest(request)
+        //self.webView.reload()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,6 +99,7 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
             println("Stream opened")
             loginView.hidden=true
             controlView.hidden=false
+            webView.reload()
             break
             
         case NSStreamEvent.HasBytesAvailable:
@@ -231,4 +243,11 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         self.controlView.hidden=true
     }
     
+}
+
+extension ConnectViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

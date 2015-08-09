@@ -33,6 +33,6 @@ cam.getImage().save(js)
 while True:
     i=cam.getImage()
     i.save(js)
-    time.sleep(1)
+    time.sleep(0.3)
 
 
