@@ -213,7 +213,14 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     
     
     @IBAction func stopButtonTapped(sender: AnyObject) {
-        sendMessage("stop")
+        //sendMessage("stop")
+        inputStream?.close()
+        outputStream?.close()
+        
+        self.loginView.hidden=false
+        self.controlView.hidden=true
+    
+
     }
     
     @IBAction func doneButtonTapped(sender: AnyObject) {
