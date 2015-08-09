@@ -65,7 +65,7 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
 
         loginView.hidden=false
         controlView.hidden=true
-        var urlAddress="http://www.youtube.com"
+        var urlAddress="http://192.168.0.103:5555"
         var url=NSURL(string: urlAddress)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
