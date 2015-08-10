@@ -10,6 +10,8 @@ import UIKit
 
 class ConnectViewController: UIViewController, NSStreamDelegate  {
     
+   // let VideoUrlAddress="http://192.168.0.103:5555"
+    let VideoUrlAddress="http://youtube.com"
     var inputStream:NSInputStream?
     var outputStream:NSOutputStream?
     var messages=NSMutableArray()
@@ -65,7 +67,7 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
 
         loginView.hidden=false
         controlView.hidden=true
-        var urlAddress="http://192.168.0.103:5555"
+        var urlAddress=VideoUrlAddress
         var url=NSURL(string: urlAddress)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
@@ -77,11 +79,11 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     }
 
     @IBAction func refreshWebview(sender: AnyObject) {
-        var urlAddress="http://192.168.0.103:5555"
+        var urlAddress=VideoUrlAddress
         var url=NSURL(string: urlAddress)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
-        //self.webView.reload()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -235,14 +237,7 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
 
     }
     
-    @IBAction func doneButtonTapped(sender: AnyObject) {
-        inputStream?.close()
-        outputStream?.close()
-        
-        self.loginView.hidden=false
-        self.controlView.hidden=true
-    }
-    
+      
 }
 
 extension ConnectViewController: UITextFieldDelegate{
