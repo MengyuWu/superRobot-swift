@@ -3,12 +3,11 @@ from twisted.internet import reactor
 import sys
 import socket
 import serial
-import struct
 
+VELOCITYCHANGE = 200
+ROTATIONCHANGE = 300
 
 class IphoneChat(Protocol):
-	VELOCITYVALUE = 200
-	ROTATIONVALUE = 300
 	def connectionMade(self):
 		self.factory.clients.append(self)
 		print "clints are",self.factory.clients
@@ -38,59 +37,26 @@ class IphoneChat(Protocol):
 			print 'upButtonDown'
 			#[137] [Velocity high byte] [Velocity low byte] [Radius high byte] [Radius low byte]
 			#[137 200->c8 0->0]
-			#ser.write(bytearray([0x89,0x00,0xc8,0x00,0x00]))
-			vl=self.VELOCITYVALUE
-			vr=self.VELOCITYVALUE
-			# create drive command
-            		cmd = struct.pack(">Bhh", 145, vr, vl)
-	    		print 'cmd: '.join([ str(ord(c)) for c in cmd ])
-			ser.write(cmd)
+			ser.write(bytearray([0x89,0x00,0xc8,0x00,0x00]))
 		elif data == 'downButtonDown':
 			print 'downButtonDown'
-            		#ser.write(bytearray([0x91,0xFF,0x38,0xFF,0x38]))
-			vl=-self.VELOCITYVALUE
-			vr=-self.VELOCITYVALUE
-			# create drive command
-            		cmd = struct.pack(">Bhh", 145, vr, vl)
-	    		print 'cmd: '.join([ str(ord(c)) for c in cmd ])
-			ser.write(cmd)
+            		ser.write(bytearray([0x91,0xFF,0x38,0xFF,0x38]))
 		elif data == 'leftButtonDown':
 			print 'leftButtonDown'
-            		#ser.write(bytearray([0x91,0x00,0x96,0xFF,0x6A]))
-			vl=(-self.ROTATIONVALUE/2)
-			vr=(self.ROTATIONVALUE/2)
-			# create drive command
-            		cmd = struct.pack(">Bhh", 145, vr, vl)
-			print 'cmd: '.join([ str(ord(c)) for c in cmd ])
-			ser.write(cmd)
+            		ser.write(bytearray([0x91,0x00,0x96,0xFF,0x6A]))
 		elif data == 'rightButtonDown':
 			print 'rightButtonDown'
-            		#ser.write(bytearray([0x91,0xFF,0x6A,0x00,0x96]))
-			vl=(self.ROTATIONVALUE/2)
-			vr=(-self.ROTATIONVALUE/2)
-			# create drive command
-            		cmd = struct.pack(">Bhh", 145, vr, vl)
-			print 'cmd: '.join([ str(ord(c)) for c in cmd ])
-			ser.write(cmd)
+            		ser.write(bytearray([0x91,0xFF,0x6A,0x00,0x96]))
         	elif data == 'stop':
             		print 'stop'
             		ser.write(bytearray([0x91,0x00,0x00,0x00,0x00]))
-		elif data[0] == 'V':
-			print 'set velocity'
-			velocity=data[2:]
-			self.VELOCITYVALUE=int(velocity)
-			self.ROTATIONVALUE=self.VELOCITYVALUE+100
-			print 'v:',self.VELOCITYVALUE
-		elif data == 'power down':
-			print 'power down'
-			ser.write(bytearray([0x85]))
 	def message(self,message):
 		self.transport.write(message+'\n')
 
 factory=Factory()
 factory.clients=[]
 factory.protocol=IphoneChat
-port=9000
+port=8000
 if len(sys.argv)>1:
     port=int(sys.argv[1])
 print port
