@@ -10,8 +10,8 @@ import UIKit
 
 class ConnectViewController: UIViewController, NSStreamDelegate  {
     
-   // let VideoUrlAddress="http://192.168.0.103:5555"
-    let VideoUrlAddress="http://youtube.com"
+    let VideoUrlAddress="http://192.168.0.103:5555"
+   // let VideoUrlAddress="http://youtube.com"
     var inputStream:NSInputStream?
     var outputStream:NSOutputStream?
     var messages=NSMutableArray()
@@ -78,6 +78,10 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         self.IPTextField.delegate=self
         self.PortTextField.delegate=self
         
+        //slider inital value
+        velocitySlider.value=200
+        self.valueLabel.text="200"
+        
     }
 
     @IBAction func refreshWebview(sender: AnyObject) {
@@ -101,6 +105,10 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
        
         case NSStreamEvent.OpenCompleted:
             println("Stream opened")
+            //slider inital value
+            velocitySlider.value=200
+            self.valueLabel.text="200"
+            
             loginView.hidden=true
             controlView.hidden=false
             webView.reload()
@@ -238,7 +246,8 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     
     
     @IBAction func stopButtonTapped(sender: AnyObject) {
-        //sendMessage("stop")
+        //sendMessage("power down")
+        sendMessage("passive")
         inputStream?.close()
         outputStream?.close()
         
