@@ -25,6 +25,8 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     
     @IBOutlet weak var webView: UIWebView!
  
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var velocitySlider: UISlider!
 
     @IBAction func ConnectButtonPressed(sender: AnyObject) {
         
@@ -141,17 +143,20 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     }
     
     @IBAction func passiveButtonTapped(sender: AnyObject) {
+        println("passive")
         sendMessage("passive")
     }
    
     
     @IBAction func safeButtonTapped(sender: AnyObject) {
+        println("safe")
         sendMessage("safe")
         
     }
     
 
     @IBAction func fullButtonTapped(sender: AnyObject) {
+        println("full")
         sendMessage("full")
         
     }
@@ -159,32 +164,32 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     
 
     @IBAction func cleanButtonTapped(sender: AnyObject) {
+        println("clean")
         sendMessage("clean")
     }
     
     
     @IBAction func dockButtonTapped(sender: AnyObject) {
+        println("dock")
         sendMessage("dock")
     }
     
     
     @IBAction func beepButtonTapped(sender: AnyObject) {
+        println("beep")
         sendMessage("beep")
     }
 
     
     // LEFT
     @IBAction func leftButtonTouchUpInside(sender: AnyObject) {
-        
-        let nanoseconds = getCurrentSecond(NSDate())
-        println("touch up inside, left move stop, time: \(nanoseconds)")
+       println("left down")
         sendMessage("stop")
     }
     
 
     @IBAction func leftButtonTouchBegin(sender: AnyObject) {
-     let nanoseconds = getCurrentSecond(NSDate())
-        println("touch down, left move begin, time: \(nanoseconds)")
+        println("left up")
         sendMessage("leftButtonDown")
         
     }
@@ -193,10 +198,12 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     //RIGHT
     
     @IBAction func rightTouchDown(sender: AnyObject) {
+        println("right down")
         sendMessage("rightButtonDown")
     }
     
     @IBAction func rightTouchUpInside(sender: AnyObject) {
+        println("right up")
         sendMessage("stop")
     }
     
@@ -205,10 +212,12 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     // UP
     
     @IBAction func upTouchDown(sender: AnyObject) {
+        println("up button down")
         sendMessage("upButtonDown")
     }
     
     @IBAction func upTouchUpInside(sender: AnyObject) {
+         println("up button up")
         sendMessage("stop")
     }
     
@@ -216,10 +225,12 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
     
     
     @IBAction func downTouchDown(sender: AnyObject) {
+        println("down button down")
         sendMessage("downButtonDown")
     }
     
     @IBAction func downTouchUpInside(sender: AnyObject) {
+        println("down button up")
          sendMessage("stop")
     }
     
@@ -237,6 +248,22 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
 
     }
     
+    
+    @IBAction func sliderValueChanged(sender:UISlider) {
+        var currentValue = Int(sender.value)
+        valueLabel.text="\(currentValue)"
+       
+    }
+    
+    
+    
+    @IBAction func sliderDidEndChange(sender:UISlider) {
+      
+          var currentValue = Int(sender.value)
+          println("did end change value: \(currentValue)")
+          sendMessage("V:\(currentValue)")
+        
+    }
       
 }
 
