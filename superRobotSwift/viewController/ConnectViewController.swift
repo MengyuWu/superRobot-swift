@@ -10,8 +10,8 @@ import UIKit
 
 class ConnectViewController: UIViewController, NSStreamDelegate  {
     
-    let VideoUrlAddress="http://192.168.0.103:5555"
-   // let VideoUrlAddress="http://youtube.com"
+    var VideoUrlAddress="http://192.168.0.103:5555"
+  
     var inputStream:NSInputStream?
     var outputStream:NSOutputStream?
     var messages=NSMutableArray()
@@ -37,6 +37,8 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         
         initNetworkCommunication(ip, port: port)
         
+        self.VideoUrlAddress="http://\(port):5555"
+        
         //TODO: check whether it is connect to server
         // if connect
 //        loginView.hidden=true
@@ -49,7 +51,7 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         var readStream: Unmanaged<CFReadStream>?
         var writeStream: Unmanaged<CFWriteStream>?
         
-        CFStreamCreatePairWithSocketToHost(nil, ip, port, &readStream, &writeStream)
+       CFStreamCreatePairWithSocketToHost(nil, ip, port, &readStream, &writeStream)
         
         self.inputStream = readStream!.takeRetainedValue()
         self.outputStream = writeStream!.takeRetainedValue()
@@ -84,11 +86,16 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
         
     }
 
-    @IBAction func refreshWebview(sender: AnyObject) {
+    func loadVideo(){
         var urlAddress=VideoUrlAddress
         var url=NSURL(string: urlAddress)
         let request = NSURLRequest(URL: url!)
         webView.loadRequest(request)
+
+    }
+    
+    @IBAction func refreshWebview(sender: AnyObject) {
+       self.loadVideo()
         
     }
     
@@ -111,7 +118,9 @@ class ConnectViewController: UIViewController, NSStreamDelegate  {
             
             loginView.hidden=true
             controlView.hidden=false
-            webView.reload()
+            //webView.reload()
+            self.loadVideo()
+            
             break
             
         case NSStreamEvent.HasBytesAvailable:
